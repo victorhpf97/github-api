@@ -1,0 +1,25 @@
+<!-- <div class="heading">
+    <h1 class="heading__title">Gradient Banner Cards</h1>
+    <p class="heading__credits"><a class="heading__link" target="_blank" href="https://dribbble.com/sl">Design by Simon Lurwer on Dribbble</a></p>
+</div> -->
+
+<!-- <div class="form__group field">
+    <input type="input" class="form__field" placeholder="Name" name="name" id='name' required />
+    <label for="name" class="form__label">Name</label>
+</div> -->
+
+<div class="cards">
+    <div *ngFor="let user of listUsers" class="card card-1">
+        <!-- <div class="grid-container" [routerLink]="['/usuario', user.login]"> -->
+        <div class="grid-container" [routerLink]="['/informacoes/usuario', user.login]">
+
+            <div class="item1">{{user.login}}</div>
+            <div class="item2">
+                <img width="60px" class="avatar" src="{{user.avatar_url}}" alt="">
+            </div>
+            <div class="item3">Main</div>
+            <div class="item4">Right</div>
+            <div class="item5">Footer</div>
+        </div>
+    </div>
+</div>

@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { InfoRoutingModule } from './info-routing.module';
 import { InfoUserComponent } from './info-user/info-user.component';
 // import { SearchRoutingModule } from './search-routing.module';
-import { UserService } from 'src/app/shared/services/github/user.service';
+import { UsersService } from 'src/app/shared/services/github/users.service';
 
 
 const APP_COMPONENT = [
@@ -29,7 +29,7 @@ const APP_MODULES = [
         // PRIMENG_MODULES,
         // DialogModule
     ],
-    providers: [UserService]
+    providers: [UsersService]
 })
 export class InfoModule {
 }

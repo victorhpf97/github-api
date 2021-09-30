@@ -1,6 +1,6 @@
 
 import { NgModule } from '@angular/core';
-import { UserService } from 'src/app/shared/services/github/user.service';
+import { UsersService } from 'src/app/shared/services/github/users.service';
 import { SearchRoutingModule } from './search-routing.module';
 import { SearchUsersComponent } from './search-users/search-users.component';
 import { BrowserModule } from '@angular/platform-browser';
@@ -29,7 +29,7 @@ const APP_MODULES = [
         // PRIMENG_MODULES,
         // DialogModule
     ],
-    providers: [UserService ]
+    providers: [UsersService ]
 })
 export class SearchModule {
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { UserService } from 'src/app/shared/services/github/user.service';
+import { UsersService } from 'src/app/shared/services/github/users.service';
 
 @Component({
   selector: 'app-info-user',
@@ -9,10 +9,12 @@ import { UserService } from 'src/app/shared/services/github/user.service';
 })
 export class InfoUserComponent implements OnInit {
 
+  public repository: any = [];
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private serviceUser: UserService,
+    private serviceUsers: UsersService,
   ) { }
 
   ngOnInit(): void {
@@ -20,12 +22,10 @@ export class InfoUserComponent implements OnInit {
     this.validParameters(userName);
   }
 
-
-
   validParameters(userName: string) {
     if (userName) {
       this.loadUserByName(userName);
-      // this.loadUserRepository(userName);
+      this.loadUserRepository(userName);
       // this.loadUserFollowers(userName);
     }
     else {
@@ -33,15 +33,22 @@ export class InfoUserComponent implements OnInit {
     }
   }
 
-
   loadUserByName(userName: string) {
-    this.serviceUser.getByName(userName).subscribe((user: any) => {
-      // this.userInfo.user = user;
-      // this.loadUserRepository(userName);
-      console.log(user)
+    this.serviceUsers.getByName(userName).subscribe((user: any) => {
+      // this.user = user
     }, err => {
       this.router.navigate(['error/', err.status]);
     });
+  }
+
+  loadUserRepository(userName: string) {
+    this.serviceUsers.getRepository(userName).subscribe(repository => {
+      this.repository = this.orderRepositoryByStars(repository);
+    });
+  }
+
+  orderRepositoryByStars(repository: any) {
+    return repository.sort((a: any, b: any) => { return b.stargazers_count - a.stargazers_count });
   }
 
 }

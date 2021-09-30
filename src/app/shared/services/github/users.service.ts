@@ -6,7 +6,7 @@ import { User } from '../../interfaces/user';
 import { UserInfo } from '../../interfaces/user-info';
 
 @Injectable()
-export class UserService {
+export class UsersService {
 
     private URL = environment.GITHUB_API_URL;
 
@@ -20,4 +20,11 @@ export class UserService {
         return this.http.get<UserInfo>(`${this.URL}/users/${userName}`);
     }
 
+    getRepository(username: string): Observable<User[]> {
+        return this.http.get<User[]>(`${this.URL}/users/${username}/repos`);
+    }
+
+    getFollowers(username: string): Observable<User[]> {
+        return this.http.get<User[]>(`${this.URL}/users/${username}/followers`);
+    }
 }
